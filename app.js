@@ -1,10 +1,34 @@
 'use strict'
-
 const path = require('path')
 const AutoLoad = require('fastify-autoload')
+const fastifyEnv = require('@fastify/env')
 
 module.exports = async function (fastify, opts) {
   // Place here your custom code!
+  const schema = {
+    type: 'object',
+    required: ['host', 'host_port', 'mail_user', 'mail_pass', 'access_pass'],
+    properties: {
+      host: { type: 'string' },
+      host_port: { type: 'number' },
+      from_label: { type: 'string' },
+      mail_user: { type: 'string' },
+      mail_pass: { type: 'string' },
+      access_pass: { type: 'string' }
+    }
+  }
+  const options = {
+    confKey: 'config', // optional, default: 'config'
+    schema: schema,
+    data: process.env // optional, default: process.env
+  }
+
+  fastify.register(fastifyEnv, options).ready((err) => {
+    if (err) console.error(err)
+    console.log(fastify.config)
+
+  })
+  await fastify.after()
 
   // Do not touch the following lines
 

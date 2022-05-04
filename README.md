@@ -14,10 +14,22 @@ send Post on /sendmail
 ```
 ## ENV
 ```
-HOST
-HOSTPORT
+host
+host_port
 mail_user
 mail_pass
 access_pass
 from_label
+```
+
+### yandex
+```
+  host=smtp.yandex.ru
+  host_port=465
+```
+
+### gmail
+```
+  host=smtp.gmail.com
+  host_port=465
 ```
