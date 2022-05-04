@@ -1,15 +1,17 @@
 "use strict";
 const nodemailer = require("nodemailer");
 const FROM_LABEL = process.env.from_label ?? 'mail bot 🤖'
+const HOST = process.env.host ?? "smtp.gmail.com"
+const HOSTPORT = +process.env.host_port ?? 587
 module.exports = async function sendMail(mail) {
 
   const mailerConfig = {
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    host: HOST,
+    port: HOSTPORT,
+    secure: HOSTPORT === 465, // true for 465, false for other ports
     auth: {
-      user: process.env.gmail_user,
-      pass: process.env.gmail_pass,
+      user: process.env.mail_user,
+      pass: process.env.mail_pass,
     },
   }
   let transporter = nodemailer.createTransport(mailerConfig);

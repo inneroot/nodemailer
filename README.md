@@ -2,7 +2,7 @@
 
 ## Fastify + Nodemailer
 
-send Post on /sendmail\
+send Post on /sendmail
 ```
 {
   "access": "access password"
@@ -14,8 +14,10 @@ send Post on /sendmail\
 ```
 ## ENV
 ```
-gmail_user
-gmail_pass
+HOST
+HOSTPORT
+mail_user
+mail_pass
 access_pass
 from_label
 ```
