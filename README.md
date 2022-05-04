@@ -5,7 +5,7 @@
 send Post on /sendmail
 ```
 {
-  "access": "access password"
+  "access": "access password",
   "to": "example@gmail.com",
   "subject": "Hello ✔",
   "text": "Hello from 🤖",
