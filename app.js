@@ -1,10 +1,8 @@
 'use strict'
 const path = require('path')
 const AutoLoad = require('fastify-autoload')
-const fastifyEnv = require('@fastify/env')
 
 module.exports = async function (fastify, opts) {
-  // Place here your custom code!
   const schema = {
     type: 'object',
     required: ['host', 'host_port', 'mail_user', 'mail_pass', 'access_pass'],
@@ -23,12 +21,16 @@ module.exports = async function (fastify, opts) {
     data: process.env // optional, default: process.env
   }
 
-  fastify.register(fastifyEnv, options).ready((err) => {
+  fastify.register(require('@fastify/env'), options).ready((err) => {
     if (err) console.error(err)
     console.log(fastify.config)
-
   })
+
   await fastify.after()
+  fastify.register(require('@fastify/cors'), {
+    origin: "*",
+    methods: ["POST"]
+  });
 
   // Do not touch the following lines
 
